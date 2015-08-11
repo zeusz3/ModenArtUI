@@ -4,8 +4,8 @@
     <string name="app_name">ModernArtUi</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">More Information</string>
-    <string name="text">text</string>
-    <string name="fire">Fire</string>
-    <string name="cancel">Cancel</string>
+    <string name="dialogMsg">This is a reproduction of work done by Piet Mondrian Composition No. II, with Red and Blue 1929, for more Art work visit MoMA.org</string>
+    <string name="visitMoMA">Visit MoMA</string>
+    <string name="notNow">Not Now!</string>
 
 </resources>

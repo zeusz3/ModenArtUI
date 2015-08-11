@@ -1,9 +1,14 @@
 package course.labs.modernartui;
 
+import android.support.v4.app.DialogFragment;
 import android.support.v7.app.ActionBarActivity;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.SeekBar;
@@ -12,6 +17,7 @@ import android.widget.TextView;
 
 
 public class MainActivity extends ActionBarActivity {
+	private DialogFragment dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,10 +60,39 @@ public class MainActivity extends ActionBarActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
         if (id == R.id.action_settings) {
-        	Intent intent = new Intent(Intent.ACTION_VIEW);
-        	intent.setData(Uri.parse("http://www.moma.org"));
-         	startActivity(intent);
+        	dialog = MoreInfoDialog.newInstance();
+        	dialog.show(getSupportFragmentManager(), "ALERT");
         }
         return super.onOptionsItemSelected(item);
     }
+
+	
+	public static class MoreInfoDialog extends DialogFragment {
+		
+		public static MoreInfoDialog newInstance() {
+			return new MoreInfoDialog();
+		}
+		@Override
+		public Dialog onCreateDialog(Bundle savedInstanceState) {
+			// Use the Builder class for convenient dialog construction
+	        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+	        builder.setMessage(R.string.dialogMsg)
+	               .setPositiveButton(R.string.visitMoMA, new DialogInterface.OnClickListener() {
+	                   public void onClick(DialogInterface dialog, int id) {
+	                       Log.i("DIALOG", "dialog fire pressed");
+	                       Intent intent = new Intent(Intent.ACTION_VIEW);
+	                       intent.setData(Uri.parse("http://www.moma.org"));
+	                       startActivity(intent);
+	                   }
+	               })
+	               .setNegativeButton(R.string.notNow, new DialogInterface.OnClickListener() {
+	                   public void onClick(DialogInterface dialog, int id) {
+	                	   Log.i("DIALOG", "dialog cancel pressed");
+	                   }
+	               });
+	        // Create the AlertDialog object and return it
+	        return builder.create();
+		}
+	
+	}
 }
