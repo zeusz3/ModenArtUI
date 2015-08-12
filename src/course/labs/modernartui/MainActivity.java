@@ -26,11 +26,13 @@ public class MainActivity extends ActionBarActivity {
         SeekBar seekBar = (SeekBar) findViewById(R.id.seekBar);
         final TextView textView1 = (TextView) findViewById(R.id.element1);
         final TextView textView2 = (TextView) findViewById(R.id.element2);
+        final TextView textView3 = (TextView) findViewById(R.id.element3);
         seekBar.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
         	@Override
         	public void onProgressChanged(SeekBar seekBar, int progresValue, boolean fromUser) {
         		textView1.setBackgroundColor(android.graphics.Color.rgb(255-progresValue, 0, 0+progresValue));
         		textView2.setBackgroundColor(android.graphics.Color.rgb(0+progresValue, 0, 255-progresValue));
+        		textView3.setBackgroundColor(android.graphics.Color.rgb(0+progresValue, 255-progresValue, 0+progresValue));
         	}
         	
         	@Override
